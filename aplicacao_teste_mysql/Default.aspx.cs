@@ -27,5 +27,32 @@ namespace aplicacao_teste_mysql
                 conexao.Close();
             }
         }
+        protected void logar(object sender, EventArgs e)
+        {
+            MySqlConnection conexao = new MySqlConnection("server=localhost;User Id=root;database=chat; password=''");
+
+            string login = this.tb_login.Text;
+            string senha = this.tb_senha.Text;
+
+            string query = "SELECT * FROM usuarios WHERE login='" + login + "' AND senha='" + senha + "'";
+            MySqlCommand comando = new MySqlCommand(query, conexao);
+
+            {
+                conexao.Open();
+
+                if (comando.ExecuteReader().HasRows)
+                {
+                    //Usuario logado com sucesso"coloque a qui o codigo para quando for logado
+                }
+                else
+                {
+                    //Usuario ou senha errada"
+                }
+
+
+                conexao.Close();
+
+            }
+        }
     }
 }
